@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Présentation de l'équipe Teckel et de son projet Course en Cours. Découvrez notre voiture, notre équipe et notre calendrier." />
+    <title>Team Teckel | Course en Cours</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    
+    <style>
+        :root {
+            --primary: #005792; /* Bleu foncé, corporate */
+            --secondary: #00bcd4; /* Cyan clair, dynamique */
+            --accent: #ff6b6b; /* Rouge corail, énergie */
+            --dark: #2c3e50; /* Presque noir, meilleur contraste */
+            --light: #f9f9f9;
+            --shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        /* --- Global / Utilities --- */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 1rem;
+            text-align: center;
+            /* Image de course plus inspirante (simulée) */
+            background-image: linear-gradient(rgba(0, 87, 146, 0.85), rgba(0, 87, 146, 0.85)), url('https://via.placeholder.com/1920x600/003f6b/ffffff?text=Vue+dynamique+de+la+voiture+Team+Teckel');
+            background-size: cover;
+            background-position: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        /* --- Team Section (Carrousel) --- */
+        #team-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        #team-section h2 {
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .swiper-container {
+            width: 100%;
+            padding-bottom: 50px;
+        }
+
+        /* Base du slide Swiper */
+        .swiper-slide {
+            display: flex; /* Maintient l'alignement pour le swiper */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Styles de la carte qui est maintenant un lien (A) */
+        .member-link {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            text-decoration: none; /* Enlève le soulignement du lien */
+            color: var(--dark); /* Maintient la couleur du texte */
+            cursor: pointer; /* Indique qu'il est cliquable */
+            
+            /* Les propriétés d'affichage pour que le lien prenne la bonne taille dans le carrousel */
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%; /* S'assure que le lien prend toute la hauteur du slide */
+            box-sizing: border-box;
+        }
+
+        .member-link:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contenu à l'intérieur du lien */
+        .member {
+             width: 100%;
+        }
+
+        .member-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--secondary);
+            box-shadow: 0 0 0 6px rgba(0, 188, 212, 0.2);
+            transition: var(--transition);
+        }
+
+        .member-link:hover .member-photo {
+            border-color: var(--primary);
+        }
+
+        .member h3 {
+            margin: 0.5rem 0 0.25rem;
+            font-size: 1.4rem;
+            color: var(--dark);
+        }
+
+        .member p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--dark);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Styles pour les flèches de navigation du carrousel */
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--primary) !important;
+            --swiper-navigation-size: 30px;
+            top: 60%;
+        }
+
+
+        /* --- Project Section --- */
+        .project {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin-top: 4rem;
+        }
+
+        .project h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid-item {
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .grid-item h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 0;
+        }
+        
+        .grid-item i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* --- CTA / Bouton --- */
+        .cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn:hover {
+            background: #e65a5a; /* A little darker accent */
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary);
+            color: white;
+            margin-top: 5rem;
+        }
+        
+        /* --- Media Queries --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .project {
+                padding: 2rem;
+            }
+            .swiper-button-next, .swiper-button-prev {
+                display: none; /* Cache les flèches sur mobile pour plus de place */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <p><i class="fas fa-flag-checkered"></i> Team Teckel | Course en Cours</p>
+        <h1>L'ingénierie prend la piste !</h1>
+        <p>Découvrez notre équipe et notre bolide miniature pour le concours Course en Cours 2025.</p>
+        <div class="cta">
+            <a href="#project-details" class="btn">Voir le projet <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="team-section">
+            <h2><i class="fas fa-users"></i> Notre Équipe de Course</h2>
+            <p style="margin-bottom: 2rem; color: #555;">**Cliquez sur une carte pour en savoir plus sur chaque membre !**</p>
+            
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <a href="details-raphael.html" class="member-link" aria-label="Détails du membre : Raphaël Lépine">
+                            <div class="member">
+                                <img src="Raph.jpg" alt="Photo de Raphaël Lépine" class="member-photo">
+                                <h3>Raphaël Lépine</h3>
+                                <p>Chef de projet & Marketing</p>
+                                <div class="social-links">
+                                    <a href="#" aria-label="Profil LinkedIn de Raphaël" onclick="event.stopPropagation();"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Profil GitHub de Raphaël" onclick="event.stopPropagation();"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <a href="details-paul.html" class="member-link" aria-label="Détails du membre : Paul Méchineau">
+                            <div class="member">
+                                <img src="paul.jpg" alt="Photo de Paul Méchineau" class="member-photo">
+                                <h3>Paul Méchineau</h3>
+                                <p>Responsable Style & Design</p>
+                                <div class="social-links">
+                                    <a href="#" aria-label="Profil LinkedIn de Paul" onclick="event.stopPropagation();"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Profil Behance de Paul" onclick="event.stopPropagation();"><i class="fab fa-behance"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <a href="details-elijah.html" class="member-link" aria-label="Détails du membre : Elijah Gourdon">
+                            <div class="member">
+                                <img src="https://via.placeholder.com/140/00bcd4/ffffff?text=EG" alt="Photo de Elijah Gourdon" class="member-photo">
+                                <h3>Elijah Gourdon</h3>
+                                <p>Ingénieur Système Numérique</p>
+                                <div class="social-links">
+                                    <a href="#" aria-label="Profil LinkedIn de Elijah" onclick="event.stopPropagation();"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Profil GitHub de Elijah" onclick="event.stopPropagation();"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <a href="details-mael.html" class="member-link" aria-label="Détails du membre : Maël Ouvrard">
+                            <div class="member">
+                                <img src="mael.jpg" alt="Photo de Maël Ouvrard" class="member-photo">
+                                <h3>Maël Ouvrard</h3>
+                                <p>Ingénieur Fabrication & Essais</p>
+                                <div class="social-links">
+                                    <a href="#" aria-label="Profil LinkedIn de Maël" onclick="event.stopPropagation();"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Profil Twitter de Maël" onclick="event.stopPropagation();"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <a href="details-lalie.html" class="member-link" aria-label="Détails du membre : Lalie Mathely">
+                            <div class="member">
+                                <img src="lalie.jpg" alt="Photo de Lalie Mathely" class="member-photo">
+                                <h3>Lalie Mathely</h3>
+                                <p>Ingénieur Conception</p>
+                                <div class="social-links">
+                                    <a href="#" aria-label="Profil LinkedIn de Lalie" onclick="event.stopPropagation();"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" aria-label="Profil GitHub de Lalie" onclick="event.stopPropagation();"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            
+        </section>
+        
+        <hr>
+
+        <section id="project-details" class="project">
+            <h2><i class="fas fa-trophy"></i> Notre Challenge : Course en Cours</h2>
+            <p class="project-intro">
+                L'objectif est de concevoir, modéliser, fabriquer et promouvoir une voiture de course miniature, propulsée par un moteur électrique, dans un cadre rigoureux de compétition. Team Teckel allie l'innovation technique et la stratégie marketing pour atteindre le podium.
+            </p>
+            
+            
+            <div class="project-grid">
+                
+                <article class="grid-item">
+                    <h3><i class="fas fa-cogs"></i> Conception & Fabrication</h3>
+                    <p>Utilisation de logiciels de **CAO** (Conception Assistée par Ordinateur), de l'**impression 3D** pour la carrosserie et des tests aérodynamiques via **soufflerie numérique** pour optimiser la performance.</p>
+                </article>
+                
+                <article class="grid-item">
+                    <h3><i class="fas fa-calendar-alt"></i> Dates Clés du Concours</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> **Sélections Locales (Angers)** : 9 avril et/ou 30 avril.</li>
+                        <li><i class="fas fa-arrow-alt-circle-right"></i> **Finale Régionale** : 20 mai.</li>
+                        <li><i class="fas fa-plane"></i> **Finale Nationale (Paris)** : 27 mai.</li>
+                    </ul>
+                </article>
+                
+                <article class="grid-item">
+                    <h3><i class="fas fa-bullhorn"></i> Compétences et Valeur</h3>
+                    <p>Développement de **compétences transversales** (gestion de projet, budget, communication). Notre projet vise à promouvoir les sciences de l'ingénieur auprès de la prochaine génération.</p>
+                </article>
+                
+                <article class="grid-item">
+                    <h3><i class="fas fa-chart-line"></i> Résultats Attendus</h3>
+                    <p>Présenter un prototype **fonctionnel et compétitif** avec un design unique, accompagné d'une soutenance technique et d'une stratégie commerciale convaincante devant le jury d'experts.</p>
+                </article>
+            </div>
+            
+            <div class="cta">
+                <a href="#" class="btn">Voir notre Dossier Technique <i class="fas fa-file-pdf"></i></a>
+            </div>
+        </section>
+    </main>
+    
+    <hr>
+
+    <footer>
+        <p>&copy; 2025 Team Teckel | Propulsé par la passion de l'ingénierie.</p>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 40,
+                    },
+                }
+            });
+        });
+    </script>
+</body>
+</html>
